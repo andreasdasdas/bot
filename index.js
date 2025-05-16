@@ -1,7 +1,7 @@
 const { Client, GatewayIntentBits, EmbedBuilder } = require('discord.js');
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
-const TOKEN = 'MTM3MjIxMzQzOTE0NTE4NTI5MA.GxcH9A.JnmIIm1rYZZbJn8wrZ8nbthWDiVAPGRfqU7Eho'; // Substituir pelo token do bot
+const TOKEN = process.env.TOKEN;
 const CANAL_BRUXA_ID = '1373074958770638848'; // ID do canal da Bruxa
 const CANAL_BOSSES_ID = '1372214285039829022'; // ID do canal de Bosses de Mapa
 const ROLE_BRUXA = '1372615547509805066'; // ID da role Bruxa

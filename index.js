@@ -1,13 +1,29 @@
+const express = require('express');
 const { Client, GatewayIntentBits, EmbedBuilder } = require('discord.js');
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
-const TOKEN = process.env.TOKEN;
-const CANAL_BRUXA_ID = '1373074958770638848'; // ID do canal da Bruxa
-const CANAL_BOSSES_ID = '1372214285039829022'; // ID do canal de Bosses de Mapa
-const ROLE_BRUXA = '1372615547509805066'; // ID da role Bruxa
-const ROLE_BOSSES = '1372615661091819683'; // ID da role Bosses
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-// Lista de bosses e horários de spawn (formato HH:mm 24h)
+// Endpoint básico pra manter o Render ativo
+app.get('/', (req, res) => {
+  res.send('Bot está rodando!');
+});
+
+app.listen(PORT, () => {
+  console.log(`🌐 Servidor Express rodando na porta ${PORT}`);
+});
+
+// Pegando o token do ambiente
+const TOKEN = process.env.TOKEN;
+
+// IDs de canais e roles
+const CANAL_BRUXA_ID = '1372214285039829022';
+const CANAL_BOSSES_ID = '1372215553189623878';
+const ROLE_BRUXA = '1372615547509805066';
+const ROLE_BOSSES = '1372615661091819683';
+
+// Lista de bosses e horários
 const bosses = [
   { nome: "Bruxa do Gelo", horario: "00:00" },
   { nome: "Boss de Mapa", horario: "01:00" },
@@ -82,4 +98,5 @@ client.once('ready', () => {
   setInterval(verificarBosses, 60 * 1000);
 });
 
+// Login com o token de ambiente
 client.login(TOKEN);
